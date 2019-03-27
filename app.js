@@ -5,19 +5,22 @@ const location = process.argv[2]
 
 if (location != undefined) {
 
-    geocode(location, (error, data) => {
+    // geocode(location, (error, data) => {
+    geocode(location, (error, { longitude, latitude, place }) => {
         if (error) {
             return console.log(error)
         }
 
-        console.log('Data: ', data)
 
-        forecast(data.longitude, data.latitude, (error, fdata) => {
+
+        // forecast(data.longitude, data.latitude, (error, fdata) => {
+        forecast(longitude, latitude, (error, fdata) => {
             console.log('..............................................................')
             if (error) {
                 return console.log(error)
             }
-            console.log(data.place)
+            // console.log(data.place)
+            console.log(place)
             console.log('Data: ', fdata)
         })
     })
